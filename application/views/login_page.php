@@ -30,8 +30,7 @@
                 <div class="login-wrap">
                     <input type="text" class="form-control" id="email" name="email" placeholder="Email" autofocus>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                    <button class="btn btn-lg btn-login btn-block" type="submit" id="submit"><span
-                            id="logText"></span></button>
+                    <button class="btn btn-lg btn-login btn-block" type="submit" id="submit"><span id="logText"></span></button>
                 </div>
             </fieldset>
         </form>
