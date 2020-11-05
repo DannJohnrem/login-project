@@ -52,12 +52,11 @@
         $('#logForm').submit(function(e) {
             e.preventDefault();
             $('#logText').html('Checking...');
-            var url = '<?php echo base_url(); ?>';
             var user = $('#logForm').serialize();
             var login = function() {
                 $.ajax({
                     type: 'POST',
-                    url: url + 'index.php/user/login',
+                    url: '<?php echo base_url(); ?>' + 'index.php/user/login',
                     dataType: 'json',
                     data: user,
                     success: function(response) {
@@ -72,12 +71,12 @@
                             $('#logForm')[0].reset();
                             setTimeout(function() {
                                 location.reload();
-                            }, 3000);
+                            }, 1000);
                         }
                     }
                 });
             };
-            setTimeout(login, 3000);
+            setTimeout(login, 1000);
         });
 
         $(document).on('click', '#clearMsg', function() {
