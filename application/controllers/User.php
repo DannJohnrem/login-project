@@ -23,7 +23,7 @@ class User extends CI_Controller {
 
 	public function login() {
 
-		//load session library
+	
 		$this->load->library('session');
 
 		$output = array('error' => false);
