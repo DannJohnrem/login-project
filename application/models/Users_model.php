@@ -10,11 +10,11 @@
 		// 	return $query->row_array();
 		// }
 
-		public function login($email) {
+		public function login($email, $password) {
 			
-			$query = $this->db->query("SELECT `email`, `password`, `fname` FROM `users` WHERE `email` = ?", array( $email ));
+			$query = $this->db->query("SELECT * FROM `users` WHERE `email`= ? AND `password` = ?", array($email, $password));
 
-			return $query->result_array();
+			return $query->row_array();
 		}
 
 	}
