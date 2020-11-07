@@ -5,16 +5,13 @@ class User extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('users_model');
 	}
 
 	public function index() {
-		//load session library
-		$this->load->library('session');
 
 		//restrict users to go back to login if session has been set
 		if($this->session->userdata('user')) {
-			redirect('user/home');
+			redirect('dashboard/home');
 		}
 		else{
 			$this->load->view('login_page');
@@ -23,40 +20,38 @@ class User extends CI_Controller {
 
 	public function login() {
 
-	
-		$this->load->library('session');
+		//load library
+		$this->load->library('form_validation');
 
-		$output = array('error' => false);
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
 
-		$email = $_POST['email'];
-		$password = $_POST['password'];
+		
+		if ($this->form_validation->run() === FALSE) {
 
-		$data = $this->users_model->login($email, $password);
+			$this->form_validation->set_message('required', 'Oops this is required');
+			$this->load->view('login_page');
 
-		if($data){
-			$this->session->set_userdata('user', $data);
-			$output['message'] = 'Logging in. Please wait...';
-		}
-		else{
-			$output['error'] = true;
-			$output['message'] = 'Login Invalid. User not found';
-		}
+		} else {
+			// get username
+			$email = $_POST['email'];
+			// get password
+			$password = $_POST['password'];
+			// login user
+			$data = $this->users_model->login($email, $password);
+		
 
-		echo json_encode($output); 
-	}
-
-	public function home() {
-
-		//load session library
-		$this->load->library('session');
-
-		//restrict users to go to home if not logged in
-		if($this->session->userdata('user')) {
-			$this->load->view('home');
-		}
-		else{
-			redirect('/');
-		}
+				if($data){
+					$this->load->library('session');
+					$this->session->set_userdata('user', $data);
+					$output['message'] = 'Logging in. Please wait...';
+				}
+				else{
+					$output['error'] = true;
+					$output['message'] = 'Login Invalid. User not found';
+				}
+			}
+			echo json_encode($output); 
 		
 	}
 
