@@ -28,8 +28,8 @@
             <fieldset>
                 <h2 class="form-signin-heading">sign in now</h2>
                 <div class="login-wrap">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" autofocus>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                     <button class="btn btn-lg btn-login btn-block" type="submit" id="submit"><span id="logText"></span></button>
                 </div>
             </fieldset>
