@@ -47,42 +47,42 @@
     <script src="<?php echo base_url(); ?>lib/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-    $(document).ready(function() {
-        $('#logText').html('Login');
-        $('#logForm').submit(function(e) {
-            e.preventDefault();
-            $('#logText').html('Checking...');
-            var user = $('#logForm').serialize();
-            var login = function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '<?php echo base_url(); ?>' + 'index.php/user/login',
-                    dataType: 'json',
-                    data: user,
-                    success: function(response) {
-                        $('#message').html(response.message);
-                        $('#logText').html('Login');
-                        if (response.error) {
-                            $('#responseDiv').removeClass('alert-success').addClass(
-                                'alert-danger').show();
-                        } else {
-                            $('#responseDiv').removeClass('alert-danger').addClass(
-                                'alert-success').show();
-                            $('#logForm')[0].reset();
-                            setTimeout(function() {
-                                location.reload();
-                            }, 1000);
+        $(document).ready(function() {
+            $('#logText').html('Login');
+            $('#logForm').submit(function(e) {
+                e.preventDefault();
+                $('#logText').html('Checking...');
+                var user = $('#logForm').serialize();
+                var login = function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo base_url(); ?>' + 'index.php/user/login',
+                        dataType: 'json',
+                        data: user,
+                        success: function(response) {
+                            $('#message').html(response.message);
+                            $('#logText').html('Login');
+                            if (response.error) {
+                                $('#responseDiv').removeClass('alert-success').addClass(
+                                    'alert-danger').show();
+                            } else {
+                                $('#responseDiv').removeClass('alert-danger').addClass(
+                                    'alert-success').show();
+                                $('#logForm')[0].reset();
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1000);
+                            }
                         }
-                    }
-                });
-            };
-            setTimeout(login, 1000);
-        });
+                    });
+                };
+                setTimeout(login, 1000);
+            });
 
-        $(document).on('click', '#clearMsg', function() {
-            $('#responseDiv').hide();
+            $(document).on('click', '#clearMsg', function() {
+                $('#responseDiv').hide();
+            });
         });
-    });
     </script>
 </body>
 
