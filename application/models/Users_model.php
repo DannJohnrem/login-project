@@ -1,6 +1,7 @@
 <?php
 	class Users_model extends CI_Model {
-		function __construct(){
+
+		function __construct() {
 			parent::__construct();
 			$this->load->database();
 		}
@@ -17,5 +18,8 @@
 			return $query->row_array();
 		}
 
+		public function tables() {
+			
+		}
+
 	}
-?>
