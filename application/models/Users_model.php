@@ -13,13 +13,16 @@
 
 		public function login($email, $password) {
 			
-			$query = $this->db->query("SELECT * FROM `users` WHERE `email`= ? AND `password` = ?", array($email, $password));
+			$query = $this->db->query("SELECT `email`, `password` FROM `users` WHERE `email`= ? AND `password` = ?", array($email, $password));
 
-			return $query->row_array();
+			return $query->result_array();
 		}
 
-		public function tables() {
+		public function getRecords() {
+
+			$query2 = $this->db->query("SELECT * FROM `users`");
 			
+			return $query2->result_array();
 		}
 
 	}

@@ -2,19 +2,18 @@
 
 class Dashboard extends CI_Controller {
 
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('Users_model');
+	}
     public function home() {
 
-
-		//load session library
-		$this->load->library('session');
-		
-		//restrict users to go to home if not logged in
-		if($this->session->userdata('user')) {
-			$this->load->view('dashboard');
-		}
-		else{
-			redirect('/');
-		}
+		$data['users'] = $this->Users_model->getRecords();
+		 
+		//  echo '<pre>';
+		//  	print_r($records);
+		//  echo '</pre>';
+		$this->load->view('dashboard', $data);
 		
 	}
 }
