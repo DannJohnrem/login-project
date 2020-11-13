@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Users_model');
 	}
+	
     public function home() {
 
 		$data['users'] = $this->Users_model->getRecords();
