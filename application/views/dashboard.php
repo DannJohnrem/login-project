@@ -52,7 +52,7 @@
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                            <li><a href="<?php echo base_url(); ?>index.php/user/logout"><i class="fa fa-key"></i> Log Out</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -99,12 +99,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="gradeX">
-                                                <td class="center hidden-phone">4</td>
-                                                <td class="center hidden-phone">X</td>
-                                                <td class="center hidden-phone">X1</td>
-                                                <td class="center hidden-phone">X2</td>
-                                            </tr>
+                                            <?php 
+                                                foreach ($users as $user):
+                                            ?>
+                                                <tr class="gradeX">
+                                                    <td class="center hidden-phone"><?php echo $user['contact_name']; ?></td>
+                                                    <td class="center hidden-phone"><?php echo $user['relationship']; ?></td>
+                                                    <td class="center hidden-phone"><?php echo $user['contact_number']; ?></td>
+                                                    <td class="center hidden-phone"><?php echo $user['email']; ?></td>
+                                                </tr>
+                                            <?php 
+                                                endforeach; 
+                                            ?>
+                                             
                                         </tbody>
                                         <tfoot>
                                             <tr>
