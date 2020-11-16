@@ -24,5 +24,4 @@
 			
 			return $query2->result_array();
 		}
-
 	}
